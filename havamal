@@ -2,16 +2,16 @@
 
 # Script by Nicklas Rudolfsson mainly for use with .bashrc
 # Put script and text-files in user home .config/havamal
-# call the script in .bashrc
+# Call this script in .bashrc
 
 # Language selection (change 'eng' to 'swe' for Swedish)
 LANGUAGE="eng"
 
 # Define the file based on the language
 if [ "$LANGUAGE" = "swe" ]; then
-    FILE="$HOME/havamal-swe.txt"
+    FILE="$HOME/.config/havamal/havamal-swe.txt"
 elif [ "$LANGUAGE" = "eng" ]; then
-    FILE="$HOME/havamal-eng.txt"
+    FILE="$HOME/.config/havamal/havamal-eng.txt"
 else
     echo "Unsupported language setting."
     exit 1

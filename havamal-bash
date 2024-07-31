@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Script by Nicklas Rudolfsson mainly for use with .bashrc
+# Put script and text-files in user home .config/havamal
+# call the script in .bashrc
+
+# Language selection (change 'eng' to 'swe' for Swedish)
+LANGUAGE="eng"
+
+# Define the file based on the language
+if [ "$LANGUAGE" = "swe" ]; then
+    FILE="$HOME/havamal-swe.txt"
+elif [ "$LANGUAGE" = "eng" ]; then
+    FILE="$HOME/havamal-eng.txt"
+else
+    echo "Unsupported language setting."
+    exit 1
+fi
+
+# Check if the file exists
+if [ ! -f "$FILE" ]; then
+    echo "File $FILE does not exist."
+    exit 1
+fi
+
+# Count the number of lines in the file
+LINE_COUNT=$(wc -l < "$FILE")
+
+# Generate a random line number
+RANDOM_LINE=$((RANDOM % LINE_COUNT + 1))
+
+# Print the randomly selected line
+sed -n "${RANDOM_LINE}p" "$FILE"

@@ -23,11 +23,21 @@ if [ ! -f "$FILE" ]; then
     exit 1
 fi
 
-# Count the number of lines in the file
-LINE_COUNT=$(wc -l < "$FILE")
+# Extract the numbers at the start of each line and count them
+LINE_NUMBERS=$(grep -o '^[0-9]\+' "$FILE" | sort -nu)
+LINE_COUNT=$(echo "$LINE_NUMBERS" | wc -l)
+
+# Check if we found any numbers
+if [ "$LINE_COUNT" -eq 0 ]; then
+    echo "No valid lines found in $FILE."
+    exit 1
+fi
 
 # Generate a random line number
 RANDOM_LINE=$((RANDOM % LINE_COUNT + 1))
 
+# Get the actual line number at the RANDOM_LINE index
+SELECTED_LINE=$(echo "$LINE_NUMBERS" | sed -n "${RANDOM_LINE}p")
+
 # Print the randomly selected line
-sed -n "${RANDOM_LINE}p" "$FILE"
+grep -E "^${SELECTED_LINE}\." "$FILE" | head -n 1

@@ -39,5 +39,5 @@ RANDOM_LINE=$((RANDOM % LINE_COUNT + 1))
 # Get the actual line number at the RANDOM_LINE index
 SELECTED_LINE=$(echo "$LINE_NUMBERS" | sed -n "${RANDOM_LINE}p")
 
-# Print the randomly selected line
-grep -E "^${SELECTED_LINE}\." "$FILE" | head -n 1
+# Print the randomly selected line without the numbering
+grep -E "^${SELECTED_LINE}\." "$FILE" | sed -e "s/^[0-9]\+\. //"

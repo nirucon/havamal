@@ -64,4 +64,4 @@ Simply run the script to get a random quote:
 
 ## License
 
-Feel free to do what you want, buy me sparkling water if you want ;)
+Feel free to use and modify, donate if you want :) https://www.paypal.com/paypalme/nicklasrudolfsson
